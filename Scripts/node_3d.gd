@@ -1,23 +1,25 @@
 extends Node3D
 
 @export var wall_scene = preload("res://Scenes/block2.tscn")
+@export var floor_scene = preload("res://Scenes/big.tscn")
+@export var floor_gap_scene = preload("res://Scenes/small.tscn")
 
 const CELL_SIZE := 3  # instead of 1 unit per block
 
 var RB : RecursiveBacktracker
+var columns: int
+var rows: int
 var maze : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	RB = RecursiveBacktracker.new(30, 30)
+	rows = 30
+	columns = 30
+	RB = RecursiveBacktracker.new(rows, columns)
 	maze = RB.generate()
 	draw_maze()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+	draw_floor()
+	
 
 func draw_maze():
 	var wall 
@@ -25,7 +27,7 @@ func draw_maze():
 		for r in maze[c].size():
 			if maze[c][r] == RecursiveBacktracker.WALL:
 				wall = wall_scene.instantiate()
-				wall.position = Vector3(r * CELL_SIZE, 2, c * CELL_SIZE)	# y=1 because block is 2m high
+				wall.position = Vector3(r * CELL_SIZE, 1.5, c * CELL_SIZE)	# y=1 because block is 2m high
 				add_child(wall)
 				
 				var block = Block.new(c, r)
@@ -52,11 +54,34 @@ func draw_maze():
 			var fill_row1 = current_block_row + 2*neighbour_row
 							
 			wall = wall_scene.instantiate()
-			wall.position = Vector3(fill_row, 2, fill_column)
+			wall.position = Vector3(fill_row, 1.5, fill_column)
 			add_child(wall)
 			wall = wall_scene.instantiate()
-			wall.position = Vector3(fill_row1, 2, fill_column1)
+			wall.position = Vector3(fill_row1, 1.5, fill_column1)
 			add_child(wall)
 			
 			if(neighbour.visitable_neighbours).has(current_block):
 				(neighbour.visitable_neighbours).erase(current_block)
+
+
+func draw_floor():
+	var floor_space
+	var c_limit = columns/2
+	var r_limit = rows/2
+	for c in range(1, c_limit):
+		for r in range(1, r_limit):
+			floor_space = floor_scene.instantiate()
+			floor_space.position = Vector3(6 * r, 0, 6 * c)
+			add_child(floor_space)
+			
+	for c in range(1, c_limit):
+		for r in range(1, r_limit):
+			floor_space = floor_gap_scene.instantiate()
+			floor_space.position = Vector3(9 + 6 * (r - 1), 0, 6 * c)
+			add_child(floor_space)
+			
+			floor_space = floor_gap_scene.instantiate()
+			floor_space.rotation = Vector3(0, - PI/2, 0)
+			floor_space.position = Vector3(6 * r, 0, 9 + 6 * (c - 1))
+			add_child(floor_space)
+			
