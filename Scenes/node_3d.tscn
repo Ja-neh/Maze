@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://cr2eucx1tok8j"]
+
+[ext_resource type="Script" uid="uid://cydxgaj3bfgx6" path="res://Scripts/node_3d.gd" id="1_7q7q3"]
+[ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/player.tscn" id="3_okq71"]
+[ext_resource type="PackedScene" uid="uid://dqw0dtg6duixs" path="res://Scenes/block2.tscn" id="3_wosnj"]
+[ext_resource type="PackedScene" uid="uid://befbutvtxslx7" path="res://Scenes/static_body_3d.tscn" id="4_wosnj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bi5fs"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_okq71"]
+sky_material = SubResource("ProceduralSkyMaterial_bi5fs")
+
+[sub_resource type="Environment" id="Environment_wosnj"]
+background_mode = 2
+sky = SubResource("Sky_okq71")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkdvt"]
+albedo_color = Color(0.517647, 0.733333, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_7q7q3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 15.9367, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wosnj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(922.288, 0, 0, 0, 1.00444, 0, 0, 0, 818.908, 0, 0, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_vkdvt")
+
+[node name="StaticBody3D2" parent="." instance=ExtResource("3_wosnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.4863, 1.50219, -1.24619)
+
+[node name="Node3D" parent="." instance=ExtResource("3_okq71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9013, 1.50222, 10.3908)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.00654946, -0.816511, 0.577293, -0.013949, 0.577175, 0.816501, -0.999881, -0.0134003, -0.00760931, 80.1176, 91.9327, 64.3358)
+
+[node name="StaticBody3D" parent="." instance=ExtResource("4_wosnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.3852, 0.937865, -1.48962)
