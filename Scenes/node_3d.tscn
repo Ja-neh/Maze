@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr2eucx1tok8j"]
+[gd_scene load_steps=11 format=3 uid="uid://cr2eucx1tok8j"]
 
 [ext_resource type="Script" uid="uid://cydxgaj3bfgx6" path="res://Scripts/node_3d.gd" id="1_7q7q3"]
 [ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/player.tscn" id="3_okq71"]
 [ext_resource type="PackedScene" uid="uid://dqw0dtg6duixs" path="res://Scenes/block2.tscn" id="3_wosnj"]
 [ext_resource type="PackedScene" uid="uid://befbutvtxslx7" path="res://Scenes/big.tscn" id="4_wosnj"]
 [ext_resource type="PackedScene" uid="uid://bfxel0sctfnvx" path="res://Scenes/small.tscn" id="5_t3l2h"]
+[ext_resource type="PackedScene" uid="uid://ekfcj07ghem8" path="res://Scenes/spikes_trap.tscn" id="6_a8auw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bi5fs"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -60,3 +61,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 3
 
 [node name="StaticBody3D6" parent="." instance=ExtResource("4_wosnj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3, 12)
+
+[node name="spikes_trap" parent="." instance=ExtResource("6_a8auw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3.129, 6)
