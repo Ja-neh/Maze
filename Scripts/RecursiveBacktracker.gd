@@ -135,8 +135,6 @@ func generate():
 		current_block.num_visits += 1
 		
 		if (current_block.visitable_neighbours).size() > 0:
-			var num_neighbours = (current_block.visitable_neighbours).size()
-			
 			var next_block = (current_block.visitable_neighbours).pick_random()
 	
 			if next_block.b_column > current_block_column:

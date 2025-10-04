@@ -66,8 +66,8 @@ func draw_maze():
 
 func draw_floor():
 	var floor_space
-	var c_limit = columns/2
-	var r_limit = rows/2
+	var c_limit = columns / 2
+	var r_limit = rows / 2
 	for c in range(1, c_limit):
 		for r in range(1, r_limit):
 			floor_space = floor_scene.instantiate()
