@@ -3,6 +3,7 @@ extends Node3D
 @export var wall_scene = preload("res://Scenes/block2.tscn")
 @export var floor_scene = preload("res://Scenes/big.tscn")
 @export var floor_gap_scene = preload("res://Scenes/small.tscn")
+@export var spikes_scene = preload("res://Scenes/spikes_trap.tscn")
 
 const CELL_SIZE := 3  # instead of 1 unit per block
 
@@ -66,13 +67,20 @@ func draw_maze():
 
 func draw_floor():
 	var floor_space
+	var spikes
 	var c_limit = columns / 2
 	var r_limit = rows / 2
 	for c in range(1, c_limit):
 		for r in range(1, r_limit):
-			floor_space = floor_scene.instantiate()
-			floor_space.position = Vector3(6 * r, 0, 6 * c)
-			add_child(floor_space)
+			var chance = randi_range(0, 10)
+			if chance < 2:
+				spikes = spikes_scene.instantiate()
+				spikes.position = Vector3(6 * r, 0, 6 * c)
+				add_child(spikes)
+			else:
+				floor_space = floor_scene.instantiate()
+				floor_space.position = Vector3(6 * r, 0, 6 * c)
+				add_child(floor_space)
 			
 	for c in range(1, c_limit):
 		for r in range(1, r_limit):
