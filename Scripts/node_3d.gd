@@ -1,9 +1,11 @@
 extends Node3D
 
 @export var wall_scene = preload("res://Scenes/block2.tscn")
-@export var floor_scene = preload("res://Scenes/big.tscn")
+#@export var floor_scene = preload("res://Scenes/big.tscn")
+@export var floor_scene = preload("res://Scenes/grass_block.tscn")
 @export var floor_gap_scene = preload("res://Scenes/small.tscn")
 @export var spikes_scene = preload("res://Scenes/spikes_trap.tscn")
+@export var key_scene = preload("res://Scenes/key.tscn")
 
 const CELL_SIZE := 3  # instead of 1 unit per block
 
@@ -20,6 +22,7 @@ func _ready() -> void:
 	maze = RB.generate()
 	draw_maze()
 	draw_floor()
+	spawn_keys()
 	
 
 func draw_maze():
@@ -92,4 +95,14 @@ func draw_floor():
 			floor_space.rotation = Vector3(0, - PI/2, 0)
 			floor_space.position = Vector3(6 * r, 0, 9 + 6 * (c - 1))
 			add_child(floor_space)
-			
+
+
+func spawn_keys():
+	var c_limit = columns / 2
+	var r_limit = rows / 2
+	for i in range(3):
+		var c = randi_range(1, c_limit - 1)
+		var r = randi_range(1, r_limit - 1)
+		var key = key_scene.instantiate()
+		key.position = Vector3(6 * r, 2, 6 * c)
+		add_child(key)

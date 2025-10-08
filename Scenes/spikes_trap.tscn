@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://ekfcj07ghem8"]
 
-[ext_resource type="Script" uid="uid://d0pss3pgn5n0e" path="res://Scenes/spikes_trap.gd" id="1_jduer"]
+[ext_resource type="Script" uid="uid://d0pss3pgn5n0e" path="res://Scripts/spikes_trap.gd" id="1_jduer"]
 
 [sub_resource type="Animation" id="Animation_5g41i"]
 resource_name = "down"
