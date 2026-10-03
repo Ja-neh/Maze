@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b5is6rgs3ot3e"
-path="res://.godot/imported/grass.glb-2db88cb7e07487ceb7159f92923769e0.scn"
+path="res://.godot/imported/grass.glb-be77e75cd858d7e80470d52c7c14a62d.scn"
 
 [deps]
 
-source_file="res://backup anim/grass.glb"
-dest_files=["res://.godot/imported/grass.glb-2db88cb7e07487ceb7159f92923769e0.scn"]
+source_file="res://Assets/grass.glb"
+dest_files=["res://.godot/imported/grass.glb-be77e75cd858d7e80470d52c7c14a62d.scn"]
 
 [params]
 

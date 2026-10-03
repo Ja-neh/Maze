@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cr2eucx1tok8j"]
+[gd_scene load_steps=12 format=3 uid="uid://cr2eucx1tok8j"]
 
 [ext_resource type="Script" uid="uid://cydxgaj3bfgx6" path="res://Scripts/node_3d.gd" id="1_7q7q3"]
 [ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/player.tscn" id="3_okq71"]
-[ext_resource type="PackedScene" uid="uid://dqw0dtg6duixs" path="res://Scenes/block2.tscn" id="3_wosnj"]
 [ext_resource type="PackedScene" uid="uid://befbutvtxslx7" path="res://Scenes/big.tscn" id="4_wosnj"]
 [ext_resource type="PackedScene" uid="uid://bfxel0sctfnvx" path="res://Scenes/small.tscn" id="5_t3l2h"]
 [ext_resource type="PackedScene" uid="uid://ekfcj07ghem8" path="res://Scenes/spikes_trap.tscn" id="6_a8auw"]
@@ -40,23 +39,18 @@ transform = Transform3D(922.288, 0, 0, 0, 1.00444, 0, 0, 0, 818.908, 0, -47.7504
 use_collision = true
 material = SubResource("StandardMaterial3D_vkdvt")
 
-[node name="StaticBody3D2" parent="." instance=ExtResource("3_wosnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.083836, 2, -1.7959452)
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(-0.7071068, 0.61237246, -0.35355335, 0, 0.49999997, 0.86602545, 0.7071068, 0.61237246, -0.35355335, 5, 47, 15)
+current = true
 
 [node name="Node3D" parent="." instance=ExtResource("3_okq71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.800047, 1.50222, 11.898086)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.502, 11)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.00654946, -0.816511, 0.577293, -0.013949, 0.577175, 0.816501, -0.999881, -0.0134003, -0.00760931, 80.1176, 91.9327, 64.3358)
 
 [node name="StaticBody3D" parent="." instance=ExtResource("4_wosnj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, 6)
-
-[node name="StaticBody3D3" parent="." instance=ExtResource("4_wosnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3, 12)
-
-[node name="StaticBody3D4" parent="." instance=ExtResource("4_wosnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, 12)
 
 [node name="StaticBody3D5" parent="." instance=ExtResource("5_t3l2h")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 3, 9)

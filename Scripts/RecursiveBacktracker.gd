@@ -27,9 +27,12 @@ var WALL_blocks : Array
 
 func _init(column : int , row : int) -> void:
 	if column % 2 == 0:
-		_column = column + 1
+		column = column + 1
 	if row % 2 == 0:
-		_row = row + 1
+		row = row + 1
+		
+	_column = column
+	_row = row
 
 	#Adding the boundry, walls and spaces to make the grid for maze
 	for c in range(_column):

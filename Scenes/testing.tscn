@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddjaxmlwusq4p"]
+
+[ext_resource type="Script" uid="uid://bibdwr2gwc1r1" path="res://Scripts/testing.gd" id="1_lq4et"]
+[ext_resource type="PackedScene" uid="uid://by1c53yb2eg5r" path="res://Scenes/player.tscn" id="2_siu27"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5tci5"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_lq4et"]
+sky_material = SubResource("ProceduralSkyMaterial_5tci5")
+
+[sub_resource type="Environment" id="Environment_siu27"]
+background_mode = 2
+sky = SubResource("Sky_lq4et")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_siu27"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.13879496, 0.3673517, 0.6594334, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx6hp"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6738183, 0.23889029, 0.32585973, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ppfb"]
+bg_color = Color(0.7118769, 0.7118769, 0.7118769, 0.6431373)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3593166, 0.5688893, 0.21609184, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="TESTING" type="Node3D"]
+script = ExtResource("1_lq4et")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 79, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_siu27")
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(-0.7071068, 0.61237246, -0.35355338, 0, 0.49999997, 0.86602545, 0.7071068, 0.61237246, -0.35355338, 5, 47, 15)
+
+[node name="Node3D" parent="." instance=ExtResource("2_siu27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 10, 20)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(63.756004, 0, 0, 0, 1, 0, 0, 0, 61.752598, 0, -11, 0)
+use_collision = true
+
+[node name="floor" type="Node3D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 428.0
+offset_bottom = 211.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="G" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_siu27")
+text = "GENERATE MAZE
+Click this button or Press G"
+
+[node name="C" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sx6hp")
+text = "SWITCH CAMERA
+Click this button or Press C"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4ppfb")
+text = "WASD for movement
+
+W - forward
+S - backwards
+A - right
+L - Left"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/G" to="." method="_on_g_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/C" to="." method="_on_c_pressed"]
